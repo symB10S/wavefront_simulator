@@ -2,7 +2,7 @@
 A wavefront simulator for simulating wavefronts in a circuit context.
 [refer to docs](https://wavefront-simulator.readthedocs.io/en/latest/)
 
-Preview the `example.ipynb` here not Github to get a sneak peek!
+Preview the `example.ipynb` here on Github to get a sneak peek!
 
 ## requirements
 
