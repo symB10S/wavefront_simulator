@@ -24,19 +24,27 @@ For the verification module to work it is also required that LTspice is installe
 [refer to docs](https://wavefront-simulator.readthedocs.io/en/latest/)
 
 ## quick install
+
 Next download the contents of this repositry, and unzip:
 
 ROOT
+
 ├───docs
+
 ├───example.ipynb
+
 ├───test.py
+
 ├───requirements.txt
+
 └───wavefronts
 
 The ROOT level is where `test.py` and `example.ipynb` is.
 
 Open a terminal at this folder.
+
 install the requirements ([a venv is always goog](https://realpython.com/python-virtual-environments-a-primer/)):
+
 > pip install -r requirements.txt
 
 Now run `test.py` or `examples.ipynb` in VScode.
