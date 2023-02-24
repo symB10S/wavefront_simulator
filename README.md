@@ -1,5 +1,6 @@
 # wavefront_simulator
 A wavefront simulator for simulating wavefronts in a circuit context.
+[refer to docs](https://wavefront-simulator.readthedocs.io/en/latest/)
 
 ## requirements
 
@@ -21,7 +22,7 @@ For the verification module to work it is also required that LTspice is installe
 
 [download LTspice](https://www.analog.com/en/design-center/design-tools-and-calculators/ltspice-simulator.html)
 
-[refer to docs](https://wavefront-simulator.readthedocs.io/en/latest/)
+
 
 ## quick install
 
