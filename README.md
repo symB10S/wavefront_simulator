@@ -2,6 +2,8 @@
 A wavefront simulator for simulating wavefronts in a circuit context.
 [refer to docs](https://wavefront-simulator.readthedocs.io/en/latest/)
 
+Preview the `example.ipynb` here not Github to get a sneak peek!
+
 ## requirements
 
 you will require a Python installation (3.9 was used here)
