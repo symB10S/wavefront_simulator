@@ -38,7 +38,7 @@ The ROOT level is where `test.py` and `example.ipynb` is.
 
 Open a terminal at this folder.
 
-install the requirements ([a venv is always goog](https://realpython.com/python-virtual-environments-a-primer/)):
+install the requirements ([a venv is always good](https://realpython.com/python-virtual-environments-a-primer/)):
 
 > pip install -r requirements.txt
 
