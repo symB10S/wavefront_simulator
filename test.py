@@ -1,33 +1,36 @@
-from wavefronts.storage import Input_Data
-from wavefronts.generation import generate_interface_data
-from wavefronts.plotting import make_time_interconnect_all
-from copy import copy
-from decimal import Decimal
-import builtins
-import matplotlib.pyplot as plt
-# generate a data input array
-data_input_1 = Input_Data(L_time = '1',C_time='7')
-# generate interface data storage object
-interface_1 = generate_interface_data(data_input_1)
-# create a copy of data_1
-data_input_2 = copy(data_input_1)
-# setup a new termination function
-R = Decimal('10')
-ZL = data_input_2.Inductor_Impedance
-def new_inductor_termination_func(V_arrive,I_arrive):
-    V_out = I_arrive * (1/(1/R + 1/ZL)) - V_arrive*ZL/(R +ZL )
-    I_out = -(V_out/ZL)
-    return V_out, I_out
 
-# replace the old termination funciton
-builtins.setattr(data_input_2, 'termination_event_solver_inductor',new_inductor_termination_func)
-# generate interface data storage object unsing the altered data_input
-interface_2 = generate_interface_data(data_input_2)
-# plot data
-fig_1, axes_1 = make_time_interconnect_all(interface_1)
-fig_2, axes_2 = make_time_interconnect_all(interface_2)
-fig_1.suptitle("LC - Osscilator")
-fig_2.suptitle("RC - Charger")
-axes_2['VL'].set_title("Resistor Votlage at Interconnect")
-axes_2['IL'].set_title("Resistor Current at Interconnect")
+from wavefronts.generation import generate_interface_data
+import wavefronts.plotting  as wp
+import matplotlib.pyplot as plt
+
+# simulate a resonator circuit :
+# ==============================
+#   inductor: impedance = 800 Ohm, timedelay = 3ns
+#   capacitor: impedance = 0.65 Ohm, timedelay = 7ns
+interface_1 = generate_interface_data(L_time = '3e-9', C_time = '7e-9')
+
+# plot all wavefroms at terminals of capacitor and inductor
+# for the plotting module 'make' indicates that the axes are made internally
+wp.make_time_interconnect_all(interface_1)
+
+# plot reflection diagram for interface
+# have to make subplot axes for 'plot' modules requiring an 'ax'
+fig_reflection_voltage, ax_reflection_voltage = plt.subplots()
+wp.plot_refelction_diagram(interface_1,ax_reflection_voltage,True) # True for plot voltage
+
+# plot all commutative interconnect fanouts
+# commmutative data is a property of interface data, referenced with .data_output_commutative
+wp.make_fanout_interconnect_all(interface_1.data_output_commutative)
+
+# plot all multiplicative interconnect fanouts
+# commmutative data is a property of interface data, referenced with .data_output_multiplicative
+wp.make_fanout_interconnect_all(interface_1.data_output_multiplicative)
+
+# plot the spatial distribution of voltage and current at 100.073ns
+wp.make_spatial_voltage_and_current('100.073e-9',interface_1)
+
+fig_interconnect,ax_interconenct = plt.subplots(2,1)
+wp.plot_timewaveforms_and_intercepts('100.073e-9',interface_1,ax_voltage = ax_interconenct[0], ax_current =ax_interconenct[1])
+
+
 plt.show()

@@ -27,13 +27,12 @@ For the verification module to work it is also required that LTspice is installe
 
 Next download the contents of this repositry, and unzip:
 
-ROOT
-
-├───docs<br />
-├───example.ipynb<br />
-├───test.py<br />
-├───requirements.txt<br />
-└───wavefronts<br />
+ROOT<br />
+├─── docs<br />
+├─── example.ipynb<br />
+├─── test.py<br />
+├─── requirements.txt<br />
+└─── wavefronts  <-- this is where modules are stored <br />
 
 The ROOT level is where `test.py` and `example.ipynb` is.
 

@@ -731,7 +731,7 @@ def plot_trace_on_merged_fanout_axis(data_output_ordered : Ordered_Output_Data, 
         
     .. warning::
 
-        the trace plotted is compatible with *merged* fanouts. (fanout plots of data_output_multiplicative) 
+        the trace plotted is compatible with *merged* fanouts. (fanout plots of storage.Inupt_Data.data_output_multiplicative) 
         
     """
     
@@ -892,7 +892,7 @@ def make_commutative_merged_lines(interface_data : Interface_Data ,which_operati
 
 def plot_time_interconnect(data_output_ordered : Ordered_Output_Data,ax, which_string :str, is_integrated: bool = True,**kwarg): 
     """Plots the time waveform of one of the interconncet metrics. 
-    It must be noted that interconnect values stored in the :Ordered_Output_Data: object signify the 'change' in interface values due to wavefronts.
+    It must be noted that interconnect values stored in the :class:`Ordered_Output_Data` object signify the 'change' in interface values due to wavefronts.
     To see the full time wavefrom, the changes must be accumulated. This function shows both change and accumulated quantities. 
 
     :param data_output_ordered: The data object containing 1D ordered simulation data
@@ -974,7 +974,7 @@ def plot_time_interconnect(data_output_ordered : Ordered_Output_Data,ax, which_s
 
 def plot_time_wavefronts(data_output_ordered : Ordered_Output_Data,ax, which_string :str, is_sending :bool,is_integrated: bool = True ): 
     """Plots the time waveform of one of the wavefront metrics. 
-    It must be noted that interconnect values stored in the `Ordered_Output_Data` object signify the 'change' in interface values due to wavefronts.
+    It must be noted that interconnect values stored in the :class:`Ordered_Output_Data` object signify the 'change' in interface values due to wavefronts.
     To see the full time wavefrom, the changes must be accumulated. This function shows both change and accumulated quantities. 
 
     :param data_output_ordered: The data object containing 1D ordered simulation data, also accepts full interface data
@@ -1068,7 +1068,7 @@ def plot_time_wavefronts(data_output_ordered : Ordered_Output_Data,ax, which_str
         ax.step(data_output_ordered.Time,get_func(which_string),where='post')
 
 def make_time_interconnect_all(data_output_ordered: Ordered_Output_Data,is_integrated :bool = True,**kwargs):
-    """Plots all interconnect time waveforms of an interface/ orderd data.
+    """Plots all interconnect time waveforms of an :class:`storage.Interface_Data`/ :class:`Orderd_Output_data`.
 
     :param data_output_ordered: data to be plotted. Can be interface or ordered data.
     :type data_output_ordered: Ordered_Output_Data
@@ -1609,12 +1609,11 @@ def make_spatial_voltage_and_current(Time_Enquriey : Decimal , Interface : Inter
     if(kwargs['return_data']) :
         return interconncet_voltage_capacitor, interconncet_voltage_inductor, interconnect_current_capacitor, interconnect_current_inductor
 
-def plot_time_interconnect_and_intercepts_at_time(Time_Enquriey : Decimal, data_output_ordered : Ordered_Output_Data ,**kwargs):
+def plot_timewaveforms_and_intercepts(Time_Enquriey : Decimal, data_output_ordered : Ordered_Output_Data ,**kwargs):
     """plots all the interconnect voltages and/or currents of the tansmission lines on two sperate axes, one axis for voltage and one for current.
-    Shows the magnitude of the interconnect values at a particualr time intercept as horizontla lines. 
-    Combined with :py:func:`make_spatial_voltage_and_current` to make py:func:`spatial_interconnect_investigator`,
-    which has an interactive form using ipywidgets, py:func:`interactive.interact_spatial`.
-    See code-block bellow.
+    Shows the magnitude of the interconnect values at a particualr time intercept as horizontal lines. 
+    Has an interactive form using ipywidgets, py:func:`wavefronts.interactive.interact_spatial` .
+    See code-block below.
 
     :param Time_Enquriey:
     :type Time_Enquriey: Decimal
@@ -1628,7 +1627,7 @@ def plot_time_interconnect_and_intercepts_at_time(Time_Enquriey : Decimal, data_
     .. code-block::
     
         from wavefronts.generation import generate_interface_data
-        from wavefronts.plotting import plot_time_interconnect_and_intercepts_at_time
+        from wavefronts.plotting import plot_timewaveforms_and_intercepts
         import matplotlib.pyplot as plt
         from decimal import Decimal
 
@@ -1641,7 +1640,7 @@ def plot_time_interconnect_and_intercepts_at_time(Time_Enquriey : Decimal, data_
 
         fig_both, ax_both = plt.subplots(2,1)
         # define axes with kwargs 'ax_voltage=' and 'ax_current='
-        plot_time_interconnect_and_intercepts_at_time(time_enquirey,interface_data,
+        plot_timewaveforms_and_intercepts(time_enquirey,interface_data,
                                                     ax_voltage = ax_both[0],
                                                     ax_current = ax_both[1])
 
@@ -1649,7 +1648,7 @@ def plot_time_interconnect_and_intercepts_at_time(Time_Enquriey : Decimal, data_
         # we will leave out 'ax_current='
         fig_single,ax_single = plt.subplots()
         time_enquirey += Decimal('5')
-        plot_time_interconnect_and_intercepts_at_time(time_enquirey,interface_data,ax_voltage = ax_single)
+        plot_timewaveforms_and_intercepts(time_enquirey,interface_data,ax_voltage = ax_single)
 
         plt.show()
         
@@ -1869,7 +1868,7 @@ def make_3d_spatial(Time_Enquriey: Decimal,interface: Input_Data,input_ax = Fals
 
 def save_spatial_interconnect(Interface : Interface_Data,**kwargs):
     """a function that saves an animation of the spatial distribution of voltage and current compared to time interconncect plots.
-    Is the combination of :py:func:`make_spatial_voltage_and_current` and :py:func:`plot_time_interconnect_and_intercepts_at_time`.
+    Is the combination of :py:func:`make_spatial_voltage_and_current` and :py:func:`plot_timewaveforms_and_intercepts`.
     It is effectively :py:func:`interactive.interact_spatial`, however smoother as computation is not 'real-time'
 
     :param Interface: the interface data to be saved.
@@ -1942,7 +1941,7 @@ def save_spatial_interconnect(Interface : Interface_Data,**kwargs):
 
         for i in tqdm(range(0,int(number_frames))):
             make_spatial_voltage_and_current(time,Interface,ax=ax_save_2d)
-            plot_time_interconnect_and_intercepts_at_time(time,Interface.data_output_ordered,ax_voltage=ax_save_2d['inter-V'],ax_current =ax_save_2d['inter-I'])
+            plot_timewaveforms_and_intercepts(time,Interface.data_output_ordered,ax_voltage=ax_save_2d['inter-V'],ax_current =ax_save_2d['inter-I'])
             
             if(kwarg_options['auto_zoom'] == False):
                 ax_save_2d['V'].set_ylim(ax_save_2d['inter-V'].get_ylim())

@@ -32,7 +32,7 @@ def interact_spatial(Interface : Interface_Data, number_of_steps:int = 1000):
         t= Interface.data_input.Simulation_Stop_Time* t / Decimal(str(number_of_steps))
         wp.clear_subplot(ax_s.values())
         VC,VL,IC,IL = wp.make_spatial_voltage_and_current(t,Interface,ax=ax_s,fig_size=(14, 8),return_data=True)
-        wp.plot_time_interconnect_and_intercepts_at_time(t,Interface.data_output_ordered,ax_voltage=ax_s['inter-V'],ax_current=ax_s['inter-I'])
+        wp.plot_timewaveforms_and_intercepts(t,Interface.data_output_ordered,ax_voltage=ax_s['inter-V'],ax_current=ax_s['inter-I'])
 
         x_v_edge = ax_s['V'].get_xlim()[1]
         x_i_edge = ax_s['I'].get_xlim()[1]
@@ -111,7 +111,7 @@ def interact_fanout_path(Interface : Interface_Data, is_Voltage:bool =True,paddi
         ax_current = ax_path['INTER']
         
 
-    wp.plot_time_interconnect_and_intercepts_at_time(0,Interface,ax_voltage=ax_voltage,ax_current=ax_current)
+    wp.plot_timewaveforms_and_intercepts(0,Interface,ax_voltage=ax_voltage,ax_current=ax_current)
     wp.plot_fanout_interconnect(Interface.data_output_multiplicative,ax_path['LF'],which_str_prefix+'inductor',padding=padding)
     wp.plot_fanout_interconnect(Interface.data_output_multiplicative,ax_path['CF'],which_str_prefix+'capacitor',padding=padding)
     
@@ -135,7 +135,7 @@ def interact_fanout_path(Interface : Interface_Data, is_Voltage:bool =True,paddi
         t = Decimal(str(t))
         t = Interface.data_input.Simulation_Stop_Time * t/Decimal('1000')
         
-        wp.plot_time_interconnect_and_intercepts_at_time(t,Interface,ax_voltage=ax_voltage,ax_current=ax_current)
+        wp.plot_timewaveforms_and_intercepts(t,Interface,ax_voltage=ax_voltage,ax_current=ax_current)
         wp.plot_fanout_interconnect(Interface.data_output_multiplicative,ax_path['LF'],which_str_prefix+'inductor',show_colour_bar=False,padding=padding)
         wp.plot_fanout_interconnect(Interface.data_output_multiplicative,ax_path['CF'],which_str_prefix+'capacitor',show_colour_bar=False,padding=padding)
         wp.plot_trace_on_merged_fanout_axis(Interface,ax_path['LF'],t,show_cross=True,padding=padding)

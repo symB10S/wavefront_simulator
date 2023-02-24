@@ -1,4 +1,4 @@
-"""This module is responsible for processing various levels of wavefront simulaiton and storing them in their relevant Data_Storage arrays (see :py:mod:`storage`).
+"""This module is responsible for processing various levels of wavefront simulaiton and storing them in their relevant Data_Storage arrays (see :mod:`storage` module).
 
 Notable functions are:
     - :py:func:`generate_commutative_data` - generates the production of wavefronts from a Input_Data input variable array. Makes use of commutative merging (described in the associated paper) which make it possible for the efficient simualiton of wavefronts.  
@@ -17,7 +17,7 @@ from wavefronts.misc import *
 getcontext().traps[FloatOperation] = True
 
 def generate_commutative_data(input_data : Input_Data):
-    """The commutative generaion algorithm. Generates a Output_Data object from the calculated input variables stored in a Input_Data object. 
+    """The commutative generaion algorithm. Generates a :py:class:`storage.Output_Data` object from the calculated input variables stored in a :py:class:`storage.Input_Data object`. 
     
     :param input_data: Input data object containing simulation input variables
     :type input_data: Input_Data

@@ -1,3 +1,11 @@
+Storage module
+=============================
+
+.. automodule:: wavefronts.storage
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
 Generation module
 =============================
 
@@ -6,13 +14,6 @@ Generation module
    :undoc-members:
    :show-inheritance:
 
-Storage module
-=============================
-
-.. automodule:: wavefronts.storage
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 Plotting module
 =============================
