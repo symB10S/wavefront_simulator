@@ -1,0 +1,11 @@
+* C:\Users\Jonathan\Documents\Academic\Masters\Simulations\LTSpice\LC_2_Only.asc
+V1 L_Node_Circuit 0 {V_source}
+L§Inductor_Circuit L_Node_Circuit C_Node_Circuit {L_tot}
+Capacitor_Circuit C_Node_Circuit 0 {C_tot}
+T§Inductor_Tx L_Node_Tx C_Node_Tx N001 N001 Td={L_time/2} Z0={L_impedance}
+T§Capacitor_Tx C_Node_Tx 0 NC_01 NC_02 Td={C_time/2} Z0={C_impedance}
+V2 L_Node_Tx 0 {V_source}
+.tran 0 {Simulation_stop_Time} 0 {Step_size} uic
+.param L_impedance=100 L_time=1 C_impedance=1 C_time=1 number_periods=1 L_tot=L_impedance*L_time/2 C_tot=C_time/(2*C_impedance) Simulation_stop_time=2*number_periods*pi*sqrt(L_tot*C_tot) Step_size=0.01 V_source=1
+.backanno
+.end
