@@ -1,6 +1,6 @@
 """A Module responsible getting LTSpice simulation data as for verification.
-    Ensure that 'LTSpice_exe_Path' in this file points to your LTspice installation.
-    Requires the the LC interface spice file template 'LC_Spice_Input.txt' which must be in the root directory.
+    Ensure that 'LTSpice_exe_Path' in module points to your LTspice installation.
+    Requires the the LC interface spice file template 'LC_Spice_Input.txt' which must be in the `wavefronts` folder.
 """
 
 import subprocess
@@ -9,8 +9,8 @@ import wavefronts.ltspy3
 # Path to installed LTSpice exe
 LTSpice_exe_Path = 'C:\Program Files\LTC\LTspiceXVII\XVIIx64.exe'
 # Name of provided parameterised LC interface template
-Spice_File_Template = 'LC_Spice_Input.txt'
-Spice_File_Altered = 'LC_Spice_Altered.txt'
+Spice_File_Template = 'wavefronts/LC_Spice_Input.txt'
+Spice_File_Altered = 'wavefronts/LC_Spice_Altered.txt'
 
 # Default Parameters and values found in provided LC_Spice_Input.txt spice input file
 default_Spice_parameters ={
@@ -145,7 +145,7 @@ def get_Spice_Arrays(**new_Spice_values):
     subprocess.call(LTSpice_exe_Path + ' -b '+Spice_File_Altered)
 
     # Extract data from outputted .raw file from LTSpice execution
-    data_out = wavefronts.ltspy3.SimData('LC_Spice_Altered.raw')
+    data_out = wavefronts.ltspy3.SimData('wavefronts/LC_Spice_Altered.raw')
 
     names = data_out.variables
     values = data_out.values

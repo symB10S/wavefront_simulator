@@ -13,11 +13,14 @@ This is the documentation for the the associated theisis:
 "The development of distributed circuit analysis techniques - the communication of two distributed components with EMI implications" 
 - Jonathan Meerholz, University of Witwatersrand, 2023
 
-
+| the associated repositry is found `here <https://github.com/symB10S/wavefront_simulator>`__.
+| the online documentation is hosted `here <https://wavefront-simulator.readthedocs.io/en/latest/>`__.
 .. toctree::
    :maxdepth: 2
-   :caption: The wavefront simulator modules:
+   :caption: Table of contents:
 
+   README
+   quickstart
    wavefronts
 
 
