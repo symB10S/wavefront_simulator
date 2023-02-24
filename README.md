@@ -29,15 +29,11 @@ Next download the contents of this repositry, and unzip:
 
 ROOT
 
-├───docs
-
-├───example.ipynb
-
-├───test.py
-
-├───requirements.txt
-
-└───wavefronts
+├───docs<br />
+├───example.ipynb<br />
+├───test.py<br />
+├───requirements.txt<br />
+└───wavefronts<br />
 
 The ROOT level is where `test.py` and `example.ipynb` is.
 
